@@ -1,0 +1,8 @@
+<div class="container my-5" style="max-width: 600px;">
+  <h1>New list</h1>
+  <%= simple_form_for @list do |f| %>
+    <%= f.input :name %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "← All lists", lists_path, class: "d-block mt-3" %>
+</div>
