@@ -1,0 +1,155 @@
+// Palette
+$night: #1b1035;
+$violet: #2a1458;
+$gold: #f6b756;
+$gold-light: #ffe29a;
+$text: #f3e9ff;
+$text-soft: #c9b8e8;
+
+// Fond : ciel de nuit avec halos
+body {
+  min-height: 100vh;
+  color: $text;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255, 215, 130, 0.18), transparent 40%),
+    radial-gradient(circle at 85% 5%, rgba(160, 110, 255, 0.30), transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(194, 86, 155, 0.25), transparent 50%),
+    linear-gradient(180deg, $night 0%, $violet 50%, #120a24 100%);
+  background-attachment: fixed;
+}
+
+// Étoiles qui scintillent
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 12%, #fff, transparent),
+    radial-gradient(1px 1px at 22% 40%, #fff, transparent),
+    radial-gradient(2px 2px at 35% 8%, $gold-light, transparent),
+    radial-gradient(1px 1px at 48% 30%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 62% 15%, #fff, transparent),
+    radial-gradient(1px 1px at 75% 45%, #fff, transparent),
+    radial-gradient(2px 2px at 88% 25%, $gold-light, transparent),
+    radial-gradient(1px 1px at 15% 70%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 40% 85%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 75%, #fff, transparent),
+    radial-gradient(2px 2px at 92% 90%, $gold-light, transparent);
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.4; }
+  to   { opacity: 1; }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+// Titres dorés
+h1, h2, h3, h5 {
+  font-family: $headers-font;
+  letter-spacing: 1px;
+}
+
+h1 {
+  background: linear-gradient(90deg, $gold-light, $gold, $gold-light);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(246, 183, 86, 0.25);
+}
+
+// Cartes translucides
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 215, 130, 0.35);
+  border-radius: 18px;
+  overflow: hidden;
+  color: $text;
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 12px 30px rgba(255, 200, 90, 0.25),
+      0 0 0 1px rgba(255, 215, 130, 0.7);
+  }
+
+  .text-muted {
+    color: $text-soft !important;
+  }
+}
+
+// Carte sans photo : dégradé magique avec l'initiale
+.list-placeholder {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6a3fd6, #c2569b 55%, $gold);
+  font-family: $headers-font;
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+// Boutons dorés
+.btn-primary {
+  background: linear-gradient(135deg, $gold, #e0883a);
+  border: none;
+  color: $night;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.55rem 1.4rem;
+  box-shadow: 0 4px 15px rgba(246, 183, 86, 0.35);
+  transition: transform 0.2s ease;
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(135deg, $gold-light, #f09b4a);
+    color: $night;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-outline-danger {
+  border-radius: 999px;
+}
+
+// Formulaires sombres
+label {
+  color: #e9dcff;
+}
+
+.form-control,
+.form-select {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 215, 130, 0.35);
+  color: #fff;
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-color: $gold;
+    box-shadow: 0 0 0 0.2rem rgba(246, 183, 86, 0.25);
+  }
+}
+
+.form-select option {
+  color: $night;
+}
+
+// Liens
+a {
+  color: $gold-light;
+
+  &:hover {
+    color: #fff;
+  }
+}

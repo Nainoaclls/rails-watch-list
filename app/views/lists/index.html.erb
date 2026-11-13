@@ -1,6 +1,6 @@
 <div class="container my-5">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>My watch lists</h1>
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h1>✨ My Watch Lists</h1>
     <%= link_to "New list", new_list_path, class: "btn btn-primary" %>
   </div>
 
@@ -9,11 +9,13 @@
   <% else %>
     <div class="row">
       <% @lists.each do |list| %>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-4 mb-4">
           <%= link_to list_path(list), class: "text-decoration-none text-reset" do %>
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100">
               <% if list.photo.attached? %>
                 <%= cl_image_tag list.photo.key, crop: :fill, height: 200, width: 400, class: "card-img-top", alt: list.name %>
+              <% else %>
+                <div class="list-placeholder"><%= list.name.first.upcase %></div>
               <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= list.name %></h5>
