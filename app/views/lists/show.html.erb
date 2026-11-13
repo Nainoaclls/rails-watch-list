@@ -5,9 +5,14 @@
     </div>
   <% end %>
 
-  <div class="d-flex justify-content-between align-items-center mb-4">
+   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1><%= @list.name %></h1>
-    <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+    <div class="d-flex gap-2">
+      <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+      <%= link_to "Delete list", list_path(@list),
+            data: { turbo_method: :delete, turbo_confirm: "Delete this list and all its movies?" },
+            class: "btn btn-outline-danger" %>
+    </div>
   </div>
 
   <% if @list.bookmarks.empty? %>
