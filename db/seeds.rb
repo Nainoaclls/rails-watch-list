@@ -29,3 +29,32 @@ rescue StandardError => e
 end
 
 puts "Created #{Movie.count} movies"
+
+puts "Creating lists..."
+lists = [
+  {
+    name: "Comedy",
+    photo_url: "https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQaUiPLJpaxXAL-CGwnV-UUKic7arMB-yY4SY7enUbFgSksNG0BClmStlVX4vJO7EIkOODAr7zgP5aO0sPt3iG3XKNVEfbyLY-xQ4bMpzVHHRkSziQ5MnueXkDn4VXT2RfN7C4QEgg-2OvnrRVTfNluW7.jpg?r=936",
+    filename: "comedy.jpg",
+    content_type: "image/jpeg"
+  },
+  {
+    name: "Action",
+    photo_url: "https://deadline.com/wp-content/uploads/2025/05/Rambo-First-Blood.webp?w=681&h=383&crop=1",
+    filename: "action.webp",
+    content_type: "image/webp"
+  }
+]
+
+lists.each do |attrs|
+  list = List.create!(name: attrs[:name])
+  begin
+    photo = URI.parse(attrs[:photo_url]).open
+    list.photo.attach(io: photo, filename: attrs[:filename], content_type: attrs[:content_type])
+    puts "Created list #{list.name} with photo"
+  rescue StandardError => e
+    puts "Created list #{list.name} without photo (#{e.message})"
+  end
+end
+
+puts "Created #{List.count} lists"

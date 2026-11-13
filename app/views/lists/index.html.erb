@@ -12,6 +12,9 @@
         <div class="col-md-4 mb-3">
           <%= link_to list_path(list), class: "text-decoration-none text-reset" do %>
             <div class="card h-100 shadow-sm">
+              <% if list.photo.attached? %>
+                <%= cl_image_tag list.photo.key, crop: :fill, height: 200, width: 400, class: "card-img-top", alt: list.name %>
+              <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= list.name %></h5>
                 <p class="card-text text-muted"><%= pluralize(list.movies.count, "movie") %></p>
